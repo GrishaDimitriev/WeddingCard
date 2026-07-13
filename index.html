@@ -25,18 +25,43 @@
             max-width: 500px;
             width: 90%;
             margin: 40px auto;
-            padding: 50px 35px;
+            padding: 60px 35px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             border-radius: 4px;
             text-align: center;
             border: 1px solid rgba(0,0,0,0.05);
             box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+        .floral-top {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: #c3b0a1;
+            opacity: 0.4;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 10px;
+        }
+        .floral-bottom {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: #c3b0a1;
+            opacity: 0.4;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 10px;
         }
         .parents-section {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.6rem;
             color: #555555;
             line-height: 1.4;
+            margin-top: 20px;
             margin-bottom: 15px;
         }
         .header-text {
@@ -74,6 +99,7 @@
             font-size: 1rem;
             line-height: 1.8;
             color: #444444;
+            margin-bottom: 30px;
         }
         .date {
             font-weight: 400;
@@ -88,19 +114,39 @@
         .address {
             font-size: 0.85rem;
             color: #666666;
-            margin-bottom: 35px;
+            margin-bottom: 20px;
+        }
+        .maps-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+        .btn-maps {
+            border: 1px solid #8c7a6b;
+            color: #8c7a6b;
+            background-color: transparent;
+        }
+        .btn-maps:hover {
+            background-color: #fbf9f6;
         }
         .rsvp-btn {
-            display: inline-block;
             background-color: #8c7a6b;
             color: #ffffff;
-            text-decoration: none;
             padding: 12px 35px;
             font-size: 0.85rem;
             letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 2px;
-            transition: opacity 0.2s ease;
         }
         .rsvp-btn:hover {
             opacity: 0.9;
@@ -109,13 +155,16 @@
             font-size: 0.8rem;
             color: #888888;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
     <div class="card-container">
-        <!-- NAMA IBU BAPA (TUAN RUMAH) -->
+        <div class="floral-top">❀ ⚜ ❀</div>
+        
+        <!-- NAMA IBU BAPA -->
         <div class="parents-section">
             Nama Bapa <br> & <br> Nama Ibu
         </div>
@@ -138,13 +187,21 @@
             <div class="date">Sabtu, 17 Oktober 2026</div>
             <div class="time">Jam 12:00 Tengah Hari - 4:00 Petang</div>
             
-            <div class="venue">Dewan Setia Kasih</div>
-            <div class="address">No. 123, Jalan Mawar, 47100 Puchong, Selangor</div>
+            <div class="venue">Sekeping Tawar Homestay</div>
+            <div class="address">Parit 2 Timur, Sungai Ayer Tawar, 45100 Sabak Bernam, Selangor</div>
+        </div>
+        
+        <!-- BUTANG NAVIGASI DENGAN ALAMAT SUNGAI AYER TAWAR -->
+        <div class="maps-container">
+            <a href="https://maps.google.com/?q=Sekeping+Tawar+Parit+2+Timur+Sungai+Ayer+Tawar" class="btn btn-maps" target="_blank">🗺️ Google Maps</a>
+            <a href="https://waze.com/ul?q=Sekeping+Tawar+Parit+2+Timur+Sungai+Ayer+Tawar" class="btn btn-maps" target="_blank">🚗 Waze</a>
         </div>
         
         <!-- PAUTAN RSVP -->
-        <a href="#" class="rsvp-btn" target="_blank">Sahkan Kehadiran (RSVP)</a>
+        <a href="#" class="btn rsvp-btn" target="_blank">Sahkan Kehadiran (RSVP)</a>
         <div class="footer-text">Sila maklumkan kehadiran sebelum 1 September 2026</div>
+
+        <div class="floral-bottom">❀ ⚜ ❀</div>
     </div>
 
 </body>
