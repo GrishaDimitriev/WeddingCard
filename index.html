@@ -18,79 +18,45 @@
             align-items: center;
             min-height: 100vh;
             font-family: 'Montserrat', sans-serif;
-            perspective: 1500px; /* Memberi kesan 3D untuk animasi buku */
             overflow-x: hidden;
         }
 
-      /* STRUKTUR BUKA BUKU YANG DIKEMAS KINI */
+        /* HALAMAN COVER DENGAN KESAN SLIDE KE ATAS */
         #wedding-cover {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 9999;
+            background-color: #f4f1ea;
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-position: center;
             display: flex;
-            overflow: hidden;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-in-out;
         }
-
-        /* Bahagian Kiri Skrin Cover */
-        .cover-half-left {
-            width: 50%;
-            height: 100%;
-            background-color: #f4f1ea;
-            background-image: url('background.jpg');
-            background-size: 100vw 100vh; /* Tukar ke 100vw supaya tiada penjarakan */
-            background-position: left center;
-            background-repeat: no-repeat;
-            transform-origin: left center;
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset -5px 0 10px rgba(0,0,0,0.15);
-        }
-
-        /* Bahagian Kanan Skrin Cover */
-        .cover-half-right {
-            width: 50%;
-            height: 100%;
-            background-color: #f4f1ea;
-            background-image: url('background.jpg');
-            background-size: 100vw 100vh; /* Tukar ke 100vw supaya sepadan dengan kiri */
-            background-position: right center;
-            background-repeat: no-repeat;
-            transform-origin: right center;
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset 5px 0 10px rgba(0,0,0,0.15);
-        }
-
-        /* Memastikan kotak kandungan terapung tepat di tengah skrin telefon */
-        .cover-content-wrapper {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10000;
-            width: 85%; /* Besarkan sikit lebar untuk skrin telefon */
-            max-width: 340px;
-            text-align: center;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            box-sizing: border-box;
+        
+        /* Kesan Slide Up */
+        #wedding-cover.hide {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
         }
 
         .cover-box {
-            background-color: rgba(251, 249, 246, 0.98);
+            background-color: rgba(251, 249, 246, 0.96);
             border: 2px solid #c5a880;
-            padding: 35px 20px;
+            padding: 40px 25px;
+            width: 80%;
+            max-width: 340px;
+            text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-sizing: border-box;
         }
 
-        /* Animasi Buka Buku */
-        #wedding-cover.open .cover-half-left {
-            transform: rotateY(-100deg); 
-        }
-        #wedding-cover.open .cover-half-right {
-            transform: rotateY(100deg); 
-        }
-        /* Gaya Tulisan Cover */
         .monogram-calligraphy {
             font-family: 'Pinyon Script', cursive;
             font-size: 5.5rem;
@@ -292,31 +258,27 @@
 </head>
 <body>
 
-    <!-- STRUKTUR SKRIN COVER GAYA BUKA BUKU -->
+    <!-- HALAMAN COVER ASAL (SLIDE UP) -->
     <div id="wedding-cover">
-        <div class="cover-half-left"></div>
-        <div class="cover-content-wrapper">
-            <div class="cover-box">
-                <div class="monogram-calligraphy">K<span>&</span>A</div>
-                <div class="cover-tag">Walimatulurus</div>
-                <div class="cover-names-cal">Nama Anda & Pasangan</div>
-                <div class="cover-date">17.10.2026</div>
-                <button class="open-btn" onclick="openInvitation()">Buka Undangan</button>
-            </div>
+        <div class="cover-box">
+            <div class="monogram-calligraphy">K<span>&</span>A</div>
+            <div class="cover-tag">Walimatulurus</div>
+            <div class="cover-names-cal">Nama Anda & Pasangan</div>
+            <div class="cover-date">17.10.2026</div>
+            <button class="open-btn" onclick="openInvitation()">Buka Undangan</button>
         </div>
-        <div class="cover-half-right"></div>
     </div>
 
-    <!-- AUDIO (Volume akan diset perlahan automatik di Javascript bawah) -->
+    <!-- AUDIO ELEMENT -->
     <audio id="weddingMusic" loop>
         <source src="lagukahwin.mp3" type="audio/mpeg">
     </audio>
     <div class="music-control" id="musicBtn" onclick="toggleMusic()">⏸️</div>
 
-    <!-- ISI KANDUNGAN KAD JEMPUTAN -->
+    <!-- KANDUNGAN UTAMA KAD -->
     <div class="card-container">
         <div class="inner-border">
-            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰnِ الرَّحِيْمِ</div>
+            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
             
             <div class="parents">
                 NAMA IBU BINTI [NAMA DATUK] <br>
@@ -375,15 +337,10 @@
         var cover = document.getElementById("wedding-cover");
 
         function openInvitation() {
-            cover.classList.add("open"); // Mengaktifkan efek selak kiri & kanan
-            music.volume = 0.2; // Suara lagu perlahan secara automatik (20%)
+            cover.classList.add("hide"); // Kesan slide up lancar ke atas
+            music.volume = 0.2; // Set volume lagu 20%
             music.play();
             btn.innerHTML = "⏸️";
-            
-            // Membuang elemen cover sepenuhnya selepas animasi tamat supaya skrin belakang boleh diskrol
-            setTimeout(function() {
-                cover.style.display = "none";
-            }, 1500);
         }
 
         function toggleMusic() {
