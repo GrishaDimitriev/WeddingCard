@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* STRUKTUR BUKA BUKU (BOOK SPLIT FLIP) */
+      /* STRUKTUR BUKA BUKU YANG DIKEMAS KINI */
         #wedding-cover {
             position: fixed;
             top: 0;
@@ -31,7 +31,7 @@
             height: 100%;
             z-index: 9999;
             display: flex;
-            pointer-events: auto;
+            overflow: hidden;
         }
 
         /* Bahagian Kiri Skrin Cover */
@@ -40,7 +40,7 @@
             height: 100%;
             background-color: #f4f1ea;
             background-image: url('background.jpg');
-            background-size: 200vw 100vh; /* Memastikan saiz gambar mengikut saiz penuh skrin */
+            background-size: 100vw 100vh; /* Tukar ke 100vw supaya tiada penjarakan */
             background-position: left center;
             background-repeat: no-repeat;
             transform-origin: left center;
@@ -54,7 +54,7 @@
             height: 100%;
             background-color: #f4f1ea;
             background-image: url('background.jpg');
-            background-size: 200vw 100vh; /* Memastikan saiz gambar mengikut saiz penuh skrin */
+            background-size: 100vw 100vh; /* Tukar ke 100vw supaya sepadan dengan kiri */
             background-position: right center;
             background-repeat: no-repeat;
             transform-origin: right center;
@@ -62,42 +62,34 @@
             box-shadow: inset 5px 0 10px rgba(0,0,0,0.15);
         }
 
-        /* Kotak Teks Tengah yang melekat pada skrin */
+        /* Memastikan kotak kandungan terapung tepat di tengah skrin telefon */
         .cover-content-wrapper {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10000;
-            width: 75%;
+            width: 85%; /* Besarkan sikit lebar untuk skrin telefon */
             max-width: 340px;
             text-align: center;
             transition: opacity 0.5s ease, transform 0.5s ease;
+            box-sizing: border-box;
         }
 
         .cover-box {
             background-color: rgba(251, 249, 246, 0.98);
             border: 2px solid #c5a880;
-            padding: 40px 25px;
+            padding: 35px 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        /* Animasi semasa butang ditekan (Kesan Selak Buku) */
+        /* Animasi Buka Buku */
         #wedding-cover.open .cover-half-left {
-            transform: rotateY(-90deg); /* Menyelak ke kiri */
+            transform: rotateY(-100deg); 
         }
         #wedding-cover.open .cover-half-right {
-            transform: rotateY(90deg); /* Menyelak ke kanan */
+            transform: rotateY(100deg); 
         }
-        #wedding-cover.open .cover-content-wrapper {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.9);
-            pointer-events: none;
-        }
-        #wedding-cover.open {
-            pointer-events: none;
-        }
-
         /* Gaya Tulisan Cover */
         .monogram-calligraphy {
             font-family: 'Pinyon Script', cursive;
