@@ -6,12 +6,12 @@
     <title>Undangan Perkahwinan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Font eksklusif untuk gaya klasik romantis & moden -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Alex+Brush&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Menambah font kaligrafi (Pinyon Script & Great Vibes) untuk gaya tulisan bersambung yang mewah -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Pinyon+Script&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
         body {
-            background-color: #dcdad4; /* Warna kelabu cair luar kad */
+            background-color: #dcdad4;
             margin: 0;
             padding: 0;
             display: flex;
@@ -21,7 +21,7 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        /* HALAMAN COVER (Gaya Halaman Kiri Gambar) */
+        /* HALAMAN COVER DENGAN LATAR BELAKANG VINTAGE FLORAL */
         #wedding-cover {
             position: fixed;
             top: 0;
@@ -29,7 +29,8 @@
             width: 100%;
             height: 100%;
             background-color: #f4f1ea;
-            background-image: url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop'); /* Tekstur bunga vintage */
+            /* Mengukarkan kepada imej latar belakang lakaran bunga vintaj yang lebih lembut/klasik */
+            background-image: url('https://img.freepik.com/free-vector/elegant-vintage-floral-background_23-2148507802.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -44,7 +45,7 @@
             pointer-events: none;
         }
         .cover-box {
-            background-color: #fbf9f6;
+            background-color: rgba(251, 249, 246, 0.95);
             border: 2px solid #c5a880; /* Bingkai Emas */
             padding: 50px 30px;
             width: 75%;
@@ -52,52 +53,64 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        .monogram {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 5rem;
+        
+        /* GAYA KALIGRAFI MONOGRAM COVER */
+        .monogram-calligraphy {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 5.5rem;
             color: #4a4a4a;
             line-height: 1;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        .monogram span {
-            color: #c5a880; /* Simbol & warna emas */
-            font-family: 'Alex Brush', cursive;
-            font-size: 4rem;
-            display: inline-block;
-            margin: 0 -10px;
+        .monogram-calligraphy span {
+            color: #c5a880;
+            font-size: 4.5rem;
+            margin: 0 -5px;
         }
+
         .cover-tag {
             font-size: 0.85rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             font-weight: 600;
             color: #333333;
-            margin-top: 30px;
+            margin-top: 25px;
         }
-        .cover-names {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.1rem;
+        
+        /* GAYA TULISAN NAMA KEDUA PENGANTIN (KALIGRAFI RAPAT) */
+        .cover-names-cal {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: #c5a880;
+            margin: 15px 0;
+        }
+        
+        .cover-date {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
             color: #666666;
-            margin: 10px 0;
         }
+
         .open-btn {
             background-color: #c5a880;
             color: #ffffff;
             border: none;
-            padding: 10px 25px;
+            padding: 12px 30px;
             font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-top: 20px;
+            margin-top: 25px;
             cursor: pointer;
             font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .open-btn:hover {
+            background-color: #b3956d;
         }
 
-        /* HALAMAN UTAMA KAD (Gaya Halaman Kanan Gambar) */
+        /* HALAMAN UTAMA KAD */
         .card-container {
             background-color: #f4f1ea;
-            /* Menggunakan corak bingkai bunga lukisan tangan hitam putih */
             background-image: url('https://img.freepik.com/free-vector/engraving-hand-drawn-floral-invitation-template_23-2149635100.jpg');
             background-size: cover;
             background-position: center;
@@ -111,9 +124,9 @@
         }
         
         .inner-border {
-            border: 2px solid #c5a880; /* Bingkai Emas Dalaman */
+            border: 2px solid #c5a880;
             padding: 40px 25px;
-            background-color: rgba(244, 241, 234, 0.92); /* Efek lutsinar supaya corak bunga belakang nampak lembut */
+            background-color: rgba(244, 241, 234, 0.94);
             text-align: center;
         }
 
@@ -143,21 +156,21 @@
             line-height: 1.8;
         }
 
-        .bride-groom {
-            font-family: 'Alex Brush', cursive;
-            font-size: 3.2rem;
+        /* NAMA PENGANTIN DI DALAM KAD (KALIGRAFI) */
+        .bride-groom-cal {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
             color: #4a4a4a;
             line-height: 1.1;
-            margin: 15px 0;
+            margin: 10px 0;
         }
         
-        .and-word {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-style: italic;
+        .and-word-cal {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.5rem;
             color: #c5a880;
             display: block;
-            margin: 5px 0;
+            margin: -5px 0;
         }
 
         .event-details {
@@ -200,7 +213,6 @@
             margin-top: 5px;
         }
 
-        /* BUTANG PILIHAN UTAMA */
         .actions-section {
             margin-top: 35px;
         }
@@ -251,7 +263,6 @@
             margin-top: 15px;
         }
 
-        /* FLOATING MUSIC CONTROL */
         .music-control {
             position: fixed;
             bottom: 20px;
@@ -273,31 +284,30 @@
 </head>
 <body>
 
-    <!-- HALAMAN COVER UTAMA (SIRI KIRI GAMBAR) -->
+    <!-- BOX COVER UTAMA DENGAN SENTUHAN TULISAN KALIGRAFI BERKILAU -->
     <div id="wedding-cover">
         <div class="cover-box">
-            <!-- Tukar Huruf Monogram Awal Nama Anda & Pasangan di bawah -->
-            <div class="monogram">K<span>&</span>A</div>
+            <!-- Menukarkan monogram K&A kepada gaya kaligrafi bersambung tulisan tangan -->
+            <div class="monogram-calligraphy">K<span>&</span>A</div>
             <div class="cover-tag">Walimatulurus</div>
-            <div class="cover-names">Nama Anda & Pasangan</div>
+            <div class="cover-names-cal">Nama Pengantin & Pasangan</div>
             <div class="cover-date">17.10.2026</div>
             <button class="open-btn" onclick="openInvitation()">Buka Undangan</button>
         </div>
     </div>
 
-    <!-- AUDIO ELEMEN (Pastikan src sepadan dengan nama file mp3 anda di github) -->
+    <!-- ELEMEN AUDIO (Pastikan nama fail lagu.mp3 sepadan dengan lagu anda) -->
     <audio id="weddingMusic" loop>
         <source src="lagukahwin.mp3" type="audio/mpeg">
     </audio>
     <div class="music-control" id="musicBtn" onclick="toggleMusic()">⏸️</div>
 
-    <!-- HALAMAN KANDUNGAN KAD (SIRI KANAN GAMBAR) -->
+    <!-- HALAMAN KANDUNGAN UTAMA KAD -->
     <div class="card-container">
         <div class="inner-border">
             
             <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
             
-            <!-- NAMA IBU BAPA -->
             <div class="parents">
                 NAMA BAPA BIN ALI <br>
                 & <br>
@@ -309,24 +319,22 @@
                 Sekeluarga Ke Majlis Perkahwinan Puteri Kami Dan Pasangannya
             </div>
             
-            <!-- NAMA PENGANTIN -->
-            <div class="bride-groom">
-                Nama Anda
-                <span class="and-word">&</span>
+            <!-- NAMA DI DALAM KAD JUGA BERTUKAR KEPADA TULISAN KALIGRAFI BERGAYA -->
+            <div class="bride-groom-cal">
+                Nama Pengantin
+                <span class="and-word-cal">dan</span>
                 Nama Pasangan
             </div>
             
             <div class="event-details">
                 <div class="location-title">Pada Tarikh Dan Masa Berikut</div>
                 
-                <!-- TARIKH & MASA -->
                 <div class="date-time">
                     Sabtu | 17 Oktober 2026 <br>
                     12:00 TGH - 5:00 PTG
                 </div>
                 
                 <div class="location-title">Bertempat Di</div>
-                <!-- LOKASI -->
                 <div class="venue-name">Sekeping Tawar Homestay</div>
                 <div class="address">
                     Parit 2 Timur, Sungai Ayer Tawar,<br>
@@ -334,7 +342,6 @@
                 </div>
             </div>
             
-            <!-- BAHAGIAN NAVIGASI & RSVP -->
             <div class="actions-section">
                 <div class="location-title" style="margin-bottom: 10px;">Klik Untuk Navigasi Ke Lokasi Majlis</div>
                 <div class="maps-flex">
