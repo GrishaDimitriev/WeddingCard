@@ -22,14 +22,14 @@
             position: relative;
         }
 
-        /* ANIMASI KELOPAK GUGUR */
+        /* ANIMASI KELOPAK GUGUR (DIBAIKI) */
         .petal {
-            position: fixed; /* Tukar ke fixed supaya ikut skrin tontonan */
-            top: -20px; /* Mula gugur dari luar skrin atas */
-            background-color: #ffb7c5; /* Warna pink kelopak yang lebih pekat & jelas */
+            position: fixed;
+            top: -20px;
+            background-color: #ffb7c5; /* Pink lebih menyerlah */
             border-radius: 150% 0 150% 150%;
             pointer-events: none;
-            z-index: 99999; /* Diletakkan paling atas supaya lalu di hadapan tulisan Bismillah */
+            z-index: 99999; /* Paling atas melintasi Bismillah */
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             animation: fade 10s infinite linear, fly 10s infinite linear;
         }
@@ -42,7 +42,7 @@
             100% { transform: translate(100vw, 100vh) rotate(720deg); }
         }
 
-        /* HALAMAN COVER DENGAN KESAN SLIDE KE ATAS */
+        /* HALAMAN COVER */
         #wedding-cover {
             position: fixed;
             top: 0;
@@ -341,7 +341,7 @@
     <!-- KANDUNGAN UTAMA KAD -->
     <div class="card-container">
         <div class="inner-border">
-            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰن الرَّحِيْمِ</div>
+            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
             
             <div class="parents">
                 SABARIAH BINTI ABU <br>
@@ -400,7 +400,6 @@
                     <a href="https://waze.com/ul?q=Sekeping+Tawar+Homestay+Lot+4586+Jalan+Haji+Abdul+Karim+Sungai+Air+Tawar&navigate=yes" class="btn-nav" target="_blank">🚗 Waze</a>
                 </div>
                 
-                <!-- DIBAIKI: ELEMEN RSVP & DEADLINE DI LUAR MAPSFLEX -->
                 <a href="#" class="rsvp-main-btn" target="_blank">Sahkan Kehadiran (RSVP)</a>
                 <div class="deadline-text">Sila sahkan kehadiran sebelum 1 September 2026</div>
             </div>
@@ -417,7 +416,7 @@
             music.volume = 0.2; 
             music.play();
             btn.innerHTML = "⏸️";
-            startPetals(); // Aktifkan kelopak bunga
+            startPetals();
         }
 
         function toggleMusic() {
@@ -430,19 +429,19 @@
             }
         }
 
-        // ANIMASI KELOPAK GUGUR
+        // ANIMASI KELOPAK GUGUR (DIBAIKI)
         function startPetals() {
             const container = document.getElementById('petals-container');
             setInterval(() => {
                 const petal = document.createElement('div');
                 petal.classList.add('petal');
                 petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDuration = Math.random() * 4 + 4 + 's'; /* Lajukan sikit guguran */
-                petal.style.width = Math.random() * 8 + 12 + 'px'; /* Saiz kelopak lebih stabil */
+                petal.style.animationDuration = Math.random() * 4 + 4 + 's';
+                petal.style.width = Math.random() * 8 + 12 + 'px';
                 petal.style.height = Math.random() * 8 + 12 + 'px';
                 container.appendChild(petal);
                 setTimeout(() => { petal.remove(); }, 8000);
-            }, 400); /* Jarak masa setiap kelopak keluar */
+            }, 400);
         }
 
         // LOGIK COUNTDOWN TIMER
