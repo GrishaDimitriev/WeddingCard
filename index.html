@@ -40,11 +40,12 @@
             height: 100%;
             background-color: #f4f1ea;
             background-image: url('background.jpg');
-            background-size: 200% 100%;
+            background-size: 200vw 100vh; /* Memastikan saiz gambar mengikut saiz penuh skrin */
             background-position: left center;
+            background-repeat: no-repeat;
             transform-origin: left center;
             transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset -5px 0 10px rgba(0,0,0,0.1);
+            box-shadow: inset -5px 0 10px rgba(0,0,0,0.15);
         }
 
         /* Bahagian Kanan Skrin Cover */
@@ -53,14 +54,12 @@
             height: 100%;
             background-color: #f4f1ea;
             background-image: url('background.jpg');
-            background-size: 200% 100%;
+            background-size: 200vw 100vh; /* Memastikan saiz gambar mengikut saiz penuh skrin */
             background-position: right center;
+            background-repeat: no-repeat;
             transform-origin: right center;
             transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: inset 5px 0 10px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            box-shadow: inset 5px 0 10px rgba(0,0,0,0.15);
         }
 
         /* Kotak Teks Tengah yang melekat pada skrin */
