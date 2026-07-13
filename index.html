@@ -19,6 +19,25 @@
             min-height: 100vh;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ANIMASI KELOPAK GUGUR */
+        .petal {
+            position: absolute;
+            background-color: rgba(255, 240, 245, 0.75);
+            border-radius: 150% 0 150% 150%;
+            pointer-events: none;
+            z-index: 99;
+            animation: fade 10s infinite linear, fly 10s infinite linear;
+        }
+        @keyframes fade {
+            0%, 90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @keyframes fly {
+            0% { transform: translate(0, -10px) rotate(0deg); }
+            100% { transform: translate(100vw, 100vh) rotate(720deg); }
         }
 
         /* HALAMAN COVER DENGAN KESAN SLIDE KE ATAS */
@@ -39,7 +58,6 @@
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-in-out;
         }
         
-        /* Kesan Slide Up */
         #wedding-cover.hide {
             transform: translateY(-100%);
             opacity: 0;
@@ -183,6 +201,36 @@
             padding: 10px 0;
             margin: 20px 0;
         }
+
+        /* GAYA KAUNTER COUNTDOWN */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .countdown-box {
+            background-color: #ffffff;
+            border: 1px solid #c5a880;
+            border-radius: 5px;
+            padding: 8px;
+            min-width: 50px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .countdown-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #c5a880;
+            display: block;
+        }
+        .countdown-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            color: #888888;
+            letter-spacing: 1px;
+        }
+
         .location-title {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -207,21 +255,21 @@
         }
         .maps-flex {
             display: flex;
-            justify-content: center; /* Meratakan kedua-dua butang tepat di tengah */
-            gap: 12px; /* Jarak yang seimbang antara butang */
+            justify-content: center;
+            gap: 12px;
             margin-bottom: 20px;
             width: 100%;
-            max-width: 320px; /* Menghalang butang terlampau lebar pada skrin besar */
-            margin-left: auto; /* Memastikan keseluruhan blok maps duduk tengah */
+            max-width: 320px;
+            margin-left: auto;
             margin-right: auto;
         }
         .btn-nav {
-            flex: 1; /* Memberi lebar yang sama rata (50-50) untuk kedua-dua butang */
+            flex: 1;
             display: inline-flex;
-            justify-content: center; /* Meratakan teks emoji di tengah butang */
+            justify-content: center;
             align-items: center;
             text-decoration: none;
-            padding: 10px 0; /* Jarak atas bawah yang selesa */
+            padding: 10px 0;
             font-size: 0.8rem;
             color: #4a4a4a;
             border: 1px solid #c5a880;
@@ -279,6 +327,9 @@
         </div>
     </div>
 
+    <!-- ELEMEN KELOPAK GUGUR -->
+    <div id="petals-container"></div>
+
     <!-- AUDIO ELEMENT -->
     <audio id="weddingMusic" loop>
         <source src="lagukahwin.mp3" type="audio/mpeg">
@@ -288,7 +339,7 @@
     <!-- KANDUNGAN UTAMA KAD -->
     <div class="card-container">
         <div class="inner-border">
-            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+            <div class="bismillah">بِسْمِ office_holder_name اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
             
             <div class="parents">
                 SABARIAH BINTI ABU <br>
@@ -313,17 +364,27 @@
                 Moga bahagia ke akhir zaman.
             </div>
             
-            <div class="date-time">
-                Ahad | 6 September 2026 <br>
-                <span style="font-size: 1rem; font-weight: 400; text-transform: none; font-style: italic; color: #777777; display: block; margin: 3px 0;">
-                    23 Rabiulawal 1448H
-                </span>
-                12:00 TGH - 5:00 PTG
-            </div>
+            <div class="event-details">
+                <div class="location-title">Pada Tarikh Dan Masa Berikut</div>
+                <div class="date-time">
+                    Ahad | 6 September 2026 <br>
+                    <span style="font-size: 1rem; font-weight: 400; text-transform: none; font-style: italic; color: #777777; display: block; margin: 3px 0;">
+                        23 Rabiulawal 1448H
+                    </span>
+                    12:00 TGH - 5:00 PTG
+                </div>
                 
-                <div class="location-title">Bertempat Di</div>
+                <!-- BLOK KAUNTER DETIK UNDURAN -->
+                <div class="location-title" style="margin-bottom: 5px;">Menghitung Hari Majlis</div>
+                <div class="countdown-container">
+                    <div class="countdown-box"><span class="countdown-num" id="days">00</span><span class="countdown-label">Hari</span></div>
+                    <div class="countdown-box"><span class="countdown-num" id="hours">00</span><span class="countdown-label">Jam</span></div>
+                    <div class="countdown-box"><span class="countdown-num" id="minutes">00</span><span class="countdown-label">Min</span></div>
+                    <div class="countdown-box"><span class="countdown-num" id="seconds">00</span><span class="countdown-label">Saat</span></div>
+                </div>
+                    
+                <div class="location-title" style="margin-top: 25px;">Bertempat Di</div>
                 <div class="venue-name">Sekeping Tawar Homestay</div>
-                <!-- Alamat Baharu -->
                 <div class="address">
                     Lot 4586 Jalan Haji Abdul Karim,<br>
                     Sungai Air Tawar, 45100 Sabak Bernam, Selangor
@@ -332,11 +393,15 @@
             
             <div class="actions-section">
                 <div class="location-title" style="margin-bottom: 10px;">Klik Untuk Navigasi Ke Lokasi Majlis</div>
-                <!-- Pautan Navigasi Baharu -->
                 <div class="maps-flex">
                     <a href="https://maps.google.com/?q=Sekeping+Tawar+Homestay+Lot+4586+Jalan+Haji+Abdul+Karim+Sungai+Air+Tawar" class="btn-nav" target="_blank">🗺️ Google Maps</a>
                     <a href="https://waze.com/ul?q=Sekeping+Tawar+Homestay+Lot+4586+Jalan+Haji+Abdul+Karim+Sungai+Air+Tawar&navigate=yes" class="btn-nav" target="_blank">🚗 Waze</a>
                 </div>
+                
+                <!-- DIBAIKI: ELEMEN RSVP & DEADLINE DI LUAR MAPSFLEX -->
+                <a href="#" class="rsvp-main-btn" target="_blank">Sahkan Kehadiran (RSVP)</a>
+                <div class="deadline-text">Sila sahkan kehadiran sebelum 1 September 2026</div>
+            </div>
         </div>
     </div>
 
@@ -346,10 +411,11 @@
         var cover = document.getElementById("wedding-cover");
 
         function openInvitation() {
-            cover.classList.add("hide"); // Kesan slide up lancar ke atas
-            music.volume = 0.2; // Set volume lagu 20%
+            cover.classList.add("hide"); 
+            music.volume = 0.2; 
             music.play();
             btn.innerHTML = "⏸️";
+            startPetals(); // Aktifkan kelopak bunga
         }
 
         function toggleMusic() {
@@ -361,6 +427,43 @@
                 btn.innerHTML = "🎵";
             }
         }
+
+        // ANIMASI KELOPAK GUGUR
+        function startPetals() {
+            const container = document.getElementById('petals-container');
+            setInterval(() => {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+                petal.style.width = Math.random() * 10 + 10 + 'px';
+                petal.style.height = Math.random() * 10 + 10 + 'px';
+                container.appendChild(petal);
+                setTimeout(() => { petal.remove(); }, 10000);
+            }, 300);
+        }
+
+        // LOGIK COUNTDOWN TIMER
+        const targetDate = new Date("Sep 6, 2026 12:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+            
+            if (difference < 0) {
+                document.getElementById("days").innerText = "00";
+                return;
+            }
+
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+        }, 1000);
     </script>
 </body>
 </html>
