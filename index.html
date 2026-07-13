@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #fbf9f6; /* Soft cream background */
+            color: #333333;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card-container {
+            background-color: #ffffff;
+            max-width: 500px;
+            width: 90%;
+            margin: 40px auto;
+            padding: 60px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-sizing: border-box;
+        }
+        .header-text {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #777777;
+            margin-bottom: 30px;
+        }
+        .names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            line-height: 1.2;
+            color: #8c7a6b; /* Elegant earthy brown accent */
+            margin: 20px 0;
+        }
+        .ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 2.2rem;
+            color: #999999;
+            display: block;
+            margin: 10px 0;
+        }
+        .divider {
+            width: 50px;
+            height: 1px;
+            background-color: #8c7a6b;
+            margin: 30px auto;
+            opacity: 0.5;
+        }
+        .details {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444444;
+        }
+        .date {
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+        .venue {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-top: 20px;
+            color: #8c7a6b;
+        }
+        .address {
+            font-size: 0.9rem;
+            color: #666666;
+            margin-bottom: 40px;
+        }
+        .rsvp-btn {
+            display: inline-block;
+            background-color: #8c7a6b;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 35px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: opacity 0.2s ease;
+        }
+        .rsvp-btn:hover {
+            opacity: 0.9;
+        }
+        .footer-text {
+            font-size: 0.8rem;
+            color: #888888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <!-- Change any text below to match your details! -->
+        <div class="header-text">Are Joyfully Requesting Your Presence At The Wedding Of</div>
+        
+        <div class="names">
+            Your Name
+            <span class="ampersand">and</span>
+            Partner's Name
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="details">
+            <div class="date">Saturday, October 17, 2026</div>
+            <div class="time">at 4:00 PM</div>
+            
+            <div class="venue">The Glasshouse Pavilion</div>
+            <div class="address">123 Orchid Gallery Road, City Name</div>
+        </div>
+        
+        <!-- Replace the '#' link below with your actual Google Form or RSVP website link -->
+        <a href="#" class="rsvp-btn" target="_blank">RSVP Online</a>
+        <div class="footer-text">Kindly respond by September 1, 2026</div>
+    </div>
+
+</body>
+</html>
