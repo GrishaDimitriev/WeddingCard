@@ -6,7 +6,6 @@
     <title>Undangan Perkahwinan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Menambah font kaligrafi (Pinyon Script & Great Vibes) untuk gaya tulisan bersambung yang mewah -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Pinyon+Script&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -19,42 +18,88 @@
             align-items: center;
             min-height: 100vh;
             font-family: 'Montserrat', sans-serif;
+            perspective: 1500px; /* Memberi kesan 3D untuk animasi buku */
+            overflow-x: hidden;
         }
 
-        /* HALAMAN COVER DENGAN LATAR BELAKANG VINTAGE FLORAL */
+        /* STRUKTUR BUKA BUKU (BOOK SPLIT FLIP) */
         #wedding-cover {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 9999;
+            display: flex;
+            pointer-events: auto;
+        }
+
+        /* Bahagian Kiri Skrin Cover */
+        .cover-half-left {
+            width: 50%;
+            height: 100%;
             background-color: #f4f1ea;
-            /* Mengukarkan kepada imej latar belakang lakaran bunga vintaj yang lebih lembut/klasik */
             background-image: url('background.jpg');
-            background-size: cover;
-            background-position: center;
+            background-size: 200% 100%;
+            background-position: left center;
+            transform-origin: left center;
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset -5px 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Bahagian Kanan Skrin Cover */
+        .cover-half-right {
+            width: 50%;
+            height: 100%;
+            background-color: #f4f1ea;
+            background-image: url('background.jpg');
+            background-size: 200% 100%;
+            background-position: right center;
+            transform-origin: right center;
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 5px 0 10px rgba(0,0,0,0.1);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
-            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
         }
-        #wedding-cover.hide {
-            transform: translateY(-100%);
-            opacity: 0;
-            pointer-events: none;
-        }
-        .cover-box {
-            background-color: rgba(251, 249, 246, 0.95);
-            border: 2px solid #c5a880; /* Bingkai Emas */
-            padding: 50px 30px;
+
+        /* Kotak Teks Tengah yang melekat pada skrin */
+        .cover-content-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
             width: 75%;
             max-width: 340px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        
-        /* GAYA KALIGRAFI MONOGRAM COVER */
+
+        .cover-box {
+            background-color: rgba(251, 249, 246, 0.98);
+            border: 2px solid #c5a880;
+            padding: 40px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Animasi semasa butang ditekan (Kesan Selak Buku) */
+        #wedding-cover.open .cover-half-left {
+            transform: rotateY(-90deg); /* Menyelak ke kiri */
+        }
+        #wedding-cover.open .cover-half-right {
+            transform: rotateY(90deg); /* Menyelak ke kanan */
+        }
+        #wedding-cover.open .cover-content-wrapper {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.9);
+            pointer-events: none;
+        }
+        #wedding-cover.open {
+            pointer-events: none;
+        }
+
+        /* Gaya Tulisan Cover */
         .monogram-calligraphy {
             font-family: 'Pinyon Script', cursive;
             font-size: 5.5rem;
@@ -67,7 +112,6 @@
             font-size: 4.5rem;
             margin: 0 -5px;
         }
-
         .cover-tag {
             font-size: 0.85rem;
             letter-spacing: 4px;
@@ -76,21 +120,17 @@
             color: #333333;
             margin-top: 25px;
         }
-        
-        /* GAYA TULISAN NAMA KEDUA PENGANTIN (KALIGRAFI RAPAT) */
         .cover-names-cal {
             font-family: 'Great Vibes', cursive;
             font-size: 2.2rem;
             color: #c5a880;
             margin: 15px 0;
         }
-        
         .cover-date {
             font-size: 0.85rem;
             letter-spacing: 2px;
             color: #666666;
         }
-
         .open-btn {
             background-color: #c5a880;
             color: #ffffff;
@@ -102,10 +142,6 @@
             margin-top: 25px;
             cursor: pointer;
             font-weight: 600;
-            transition: background-color 0.2s;
-        }
-        .open-btn:hover {
-            background-color: #b3956d;
         }
 
         /* HALAMAN UTAMA KAD */
@@ -122,14 +158,12 @@
             box-sizing: border-box;
             position: relative;
         }
-        
         .inner-border {
             border: 2px solid #c5a880;
             padding: 40px 25px;
             background-color: rgba(244, 241, 234, 0.94);
             text-align: center;
         }
-
         .bismillah {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
@@ -137,7 +171,6 @@
             margin-bottom: 20px;
             font-weight: 600;
         }
-
         .parents {
             font-size: 0.9rem;
             font-weight: 600;
@@ -146,7 +179,6 @@
             text-transform: uppercase;
             line-height: 1.6;
         }
-
         .invitation-phrase {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -155,8 +187,6 @@
             margin: 20px 0;
             line-height: 1.8;
         }
-
-        /* NAMA PENGANTIN DI DALAM KAD (KALIGRAFI) */
         .bride-groom-cal {
             font-family: 'Great Vibes', cursive;
             font-size: 3.5rem;
@@ -164,8 +194,13 @@
             line-height: 1.1;
             margin: 10px 0;
         }
-
-        /* GAYA TULISAN PANTUN */
+        .and-word-cal {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.5rem;
+            color: #c5a880;
+            display: block;
+            margin: -5px 0;
+        }
         .pantun-section {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
@@ -175,21 +210,11 @@
             margin: 25px auto;
             max-width: 320px;
         }
-        
-        .and-word-cal {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 2.5rem;
-            color: #c5a880;
-            display: block;
-            margin: -5px 0;
-        }
-
         .event-details {
             margin-top: 30px;
             font-size: 0.9rem;
             color: #444444;
         }
-
         .date-time {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.3rem;
@@ -201,7 +226,6 @@
             padding: 10px 0;
             margin: 20px 0;
         }
-
         .location-title {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -209,36 +233,28 @@
             color: #777777;
             margin-bottom: 5px;
         }
-
         .venue-name {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.4rem;
             color: #222222;
             font-weight: 600;
         }
-
         .address {
             font-size: 0.8rem;
             color: #666666;
             line-height: 1.5;
             margin-top: 5px;
         }
-
         .actions-section {
             margin-top: 35px;
         }
-
         .maps-flex {
             display: flex;
             justify-content: center;
             gap: 15px;
             margin-bottom: 20px;
         }
-
         .btn-nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
             text-decoration: none;
             padding: 8px 18px;
             font-size: 0.75rem;
@@ -247,14 +263,7 @@
             background-color: #ffffff;
             border-radius: 20px;
             font-weight: 600;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-
-        .btn-nav img {
-            width: 16px;
-            height: 16px;
-        }
-
         .rsvp-main-btn {
             display: inline-block;
             text-decoration: none;
@@ -265,15 +274,12 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             font-weight: 600;
-            box-shadow: 0 4px 10px rgba(197, 168, 128, 0.3);
         }
-
         .deadline-text {
             font-size: 0.75rem;
             color: #888888;
             margin-top: 15px;
         }
-
         .music-control {
             position: fixed;
             bottom: 20px;
@@ -295,34 +301,35 @@
 </head>
 <body>
 
-    <!-- BOX COVER UTAMA DENGAN SENTUHAN TULISAN KALIGRAFI BERKILAU -->
+    <!-- STRUKTUR SKRIN COVER GAYA BUKA BUKU -->
     <div id="wedding-cover">
-        <div class="cover-box">
-            <!-- Menukarkan monogram K&A kepada gaya kaligrafi bersambung tulisan tangan -->
-            <div class="monogram-calligraphy">Z<span>&</span>A</div>
-            <div class="cover-tag">Walimatulurus</div>
-            <div class="cover-names-cal">Muhammad Zikri & Ainul Husna</div>
-            <div class="cover-date">17.10.2026</div>
-            <button class="open-btn" onclick="openInvitation()">Buka Undangan</button>
+        <div class="cover-half-left"></div>
+        <div class="cover-content-wrapper">
+            <div class="cover-box">
+                <div class="monogram-calligraphy">K<span>&</span>A</div>
+                <div class="cover-tag">Walimatulurus</div>
+                <div class="cover-names-cal">Nama Anda & Pasangan</div>
+                <div class="cover-date">17.10.2026</div>
+                <button class="open-btn" onclick="openInvitation()">Buka Undangan</button>
+            </div>
         </div>
+        <div class="cover-half-right"></div>
     </div>
 
-    <!-- ELEMEN AUDIO (Pastikan nama fail lagu.mp3 sepadan dengan lagu anda) -->
+    <!-- AUDIO (Volume akan diset perlahan automatik di Javascript bawah) -->
     <audio id="weddingMusic" loop>
         <source src="lagukahwin.mp3" type="audio/mpeg">
     </audio>
     <div class="music-control" id="musicBtn" onclick="toggleMusic()">⏸️</div>
 
-    <!-- HALAMAN KANDUNGAN UTAMA KAD -->
+    <!-- ISI KANDUNGAN KAD JEMPUTAN -->
     <div class="card-container">
         <div class="inner-border">
-            
-            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+            <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰnِ الرَّحِيْمِ</div>
             
             <div class="parents">
-                SABARIAH BINTU ABU <br>
-                & <br>
-                AL -MARHUM HISHAM BIN AHMAD
+                NAMA IBU BINTI [NAMA DATUK] <br>
+                & AL-MARHUM NAMA BAPA BIN [NAMA DATUK]
             </div>
             
             <div class="invitation-phrase">
@@ -330,14 +337,12 @@
                 Sekeluarga Ke Majlis Perkahwinan Putera Kami Dan Pasangannya
             </div>
             
-            <!-- NAMA DI DALAM KAD JUGA BERTUKAR KEPADA TULISAN KALIGRAFI BERGAYA -->
             <div class="bride-groom-cal">
-                Zikri
+                Nama Pengantin
                 <span class="and-word-cal">dan</span>
-                Ainul
+                Nama Pasangan
             </div>
 
-            <!-- TULISAN PANTUN PERKAHWINAN -->
             <div class="pantun-section">
                 Bunga rampai gubahan dara,<br>
                 Disunting teruna buat hiasan;<br>
@@ -347,10 +352,9 @@
             
             <div class="event-details">
                 <div class="location-title">Pada Tarikh Dan Masa Berikut</div>
-                
                 <div class="date-time">
-                    Ahad | 6 September 2026 <br>
-                    11:00 TGH - 4:00 PTG
+                    Sabtu | 17 Oktober 2026 <br>
+                    12:00 TGH - 5:00 PTG
                 </div>
                 
                 <div class="location-title">Bertempat Di</div>
@@ -363,19 +367,14 @@
             
             <div class="actions-section">
                 <div class="location-title" style="margin-bottom: 10px;">Klik Untuk Navigasi Ke Lokasi Majlis</div>
-               <div class="maps-flex">
-                    <a href="https://maps.google.com/?q=Sekeping+Tawar+Parit+2+Timur+Sungai+Ayer+Tawar" class="btn-nav" target="_blank">
-                        🗺️ Google Maps
-                    </a>
-                    <a href="https://www.waze.com/ul?ll=3.8456,100.9312&navigate=yes" class="btn-nav" target="_blank">
-                        🚗 Waze
-                    </a>
+                <div class="maps-flex">
+                    <a href="https://maps.google.com/?q=Sekeping+Tawar+Parit+2+Timur+Sungai+Ayer+Tawar" class="btn-nav" target="_blank">🗺️ Google Maps</a>
+                    <a href="https://www.waze.com/ul?ll=3.8456,100.9312&navigate=yes" class="btn-nav" target="_blank">🚗 Waze</a>
                 </div>
                 
                 <a href="#" class="rsvp-main-btn" target="_blank">Sahkan Kehadiran (RSVP)</a>
                 <div class="deadline-text">Sila sahkan kehadiran sebelum 1 September 2026</div>
             </div>
-
         </div>
     </div>
 
@@ -385,10 +384,15 @@
         var cover = document.getElementById("wedding-cover");
 
         function openInvitation() {
-            cover.classList.add("hide");
-            music.volume = 0.2; // Menetapkan kekuatan bunyi kepada 20% (lembut & selesa)
+            cover.classList.add("open"); // Mengaktifkan efek selak kiri & kanan
+            music.volume = 0.2; // Suara lagu perlahan secara automatik (20%)
             music.play();
             btn.innerHTML = "⏸️";
+            
+            // Membuang elemen cover sepenuhnya selepas animasi tamat supaya skrin belakang boleh diskrol
+            setTimeout(function() {
+                cover.style.display = "none";
+            }, 1500);
         }
 
         function toggleMusic() {
