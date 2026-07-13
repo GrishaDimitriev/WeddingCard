@@ -207,19 +207,29 @@
         }
         .maps-flex {
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            justify-content: center; /* Meratakan kedua-dua butang tepat di tengah */
+            gap: 12px; /* Jarak yang seimbang antara butang */
             margin-bottom: 20px;
+            width: 100%;
+            max-width: 320px; /* Menghalang butang terlampau lebar pada skrin besar */
+            margin-left: auto; /* Memastikan keseluruhan blok maps duduk tengah */
+            margin-right: auto;
         }
         .btn-nav {
+            flex: 1; /* Memberi lebar yang sama rata (50-50) untuk kedua-dua butang */
+            display: inline-flex;
+            justify-content: center; /* Meratakan teks emoji di tengah butang */
+            align-items: center;
             text-decoration: none;
-            padding: 8px 18px;
-            font-size: 0.75rem;
+            padding: 10px 0; /* Jarak atas bawah yang selesa */
+            font-size: 0.8rem;
             color: #4a4a4a;
             border: 1px solid #c5a880;
             background-color: #ffffff;
             border-radius: 20px;
             font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
         }
         .rsvp-main-btn {
             display: inline-block;
