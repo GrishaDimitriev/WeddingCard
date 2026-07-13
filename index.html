@@ -56,6 +56,33 @@
             font-family: 'Cormorant Garamond', serif;
             letter-spacing: 10px;
         }
+        
+        /* Butang Kawalan Muzik Floting */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffffff;
+            border: 1px solid #8c7a6b;
+            color: #8c7a6b;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         .parents-section {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.6rem;
@@ -161,6 +188,12 @@
 </head>
 <body>
 
+    <!-- Elemen Audio & Butang Kawalan -->
+    <audio id="weddingMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    <div class="music-control" id="musicBtn" onclick="toggleMusic()">🎵</div>
+
     <div class="card-container">
         <div class="floral-top">❀ ⚜ ❀</div>
         
@@ -191,10 +224,10 @@
             <div class="address">Parit 2 Timur, Sungai Ayer Tawar, 45100 Sabak Bernam, Selangor</div>
         </div>
         
-        <!-- BUTANG NAVIGASI DENGAN ALAMAT SUNGAI AYER TAWAR -->
+        <!-- BUTANG NAVIGASI -->
         <div class="maps-container">
             <a href="https://maps.google.com/?q=Sekeping+Tawar+Parit+2+Timur+Sungai+Ayer+Tawar" class="btn btn-maps" target="_blank">🗺️ Google Maps</a>
-            <a href="https://waze.com/ul?q=Sekeping+Tawar+Parit+2+Timur+Sungai+Ayer+Tawar" class="btn btn-maps" target="_blank">🚗 Waze</a>
+            <a href="https://www.waze.com/ul?ll=3.8456,100.9312&navigate=yes" class="btn btn-maps" target="_blank">🚗 Waze</a>
         </div>
         
         <!-- PAUTAN RSVP -->
@@ -204,5 +237,29 @@
         <div class="floral-bottom">❀ ⚜ ❀</div>
     </div>
 
+    <!-- Skrip fungsi muzik -->
+    <script>
+        var music = document.getElementById("weddingMusic");
+        var btn = document.getElementById("musicBtn");
+
+        // Kebanyakan pelayar web moden memerlukan interaksi pertama pengguna untuk mainkan audio
+        document.body.addEventListener('click', function() {
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "⏸️";
+            }
+        }, { once: true });
+
+        function toggleMusic() {
+            event.stopPropagation(); // Elak trigger event body di atas
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "⏸️";
+            } else {
+                music.pause();
+                btn.innerHTML = "🎵";
+            }
+        }
+    </script>
 </body>
 </html>
